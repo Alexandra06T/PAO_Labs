@@ -8,6 +8,10 @@ public class Aplicatie {
 
         Patrulater patrulater = new Patrulater(1, 2, 3, 4);
 
+        Calcul c2 = new Cerc(3);
+
+        System.out.println("Perimetru c2: " + c2.calculPerimetru());
+
         System.out.println("Perimetru cerc: " + cerc1.calculPerimetru());
 
         System.out.println("Perimetru patrulater: " + patrulater.calculPerimetru());
