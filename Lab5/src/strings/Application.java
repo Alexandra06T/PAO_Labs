@@ -32,7 +32,7 @@ public class Application {
         String str = "Odata creat un sir de caractere cu continutul sau nu mai poate fi modificat.";
         System.out.println("Lungime sir: " + str.length());
 
-        System.out.println("Doar litere mari si mici (si separatori): " + str.matches("[a-zA-Z .]*"));
+        System.out.println("Doar litere mari si mici: " + (str.replaceAll("[ .]", "")).matches("[A-Za-z]+"));
 
         String[] cuv = str.split("[ .]+");
         int middle = (int) Math.floor((double)cuv.length/2);
@@ -40,7 +40,7 @@ public class Application {
         System.out.println((middle-1) + ": " + cuv[middle-1]);
         System.out.println((middle) + ": " + cuv[middle]);
 
-        StringBuilder stB = new StringBuilder("Odata creat un sir de caractere cu continutul sau nu mai poate fi modificat.");
+        StringBuilder stB = new StringBuilder(str);
         stB.reverse();
         System.out.println("Reversed: " + stB);
     }
