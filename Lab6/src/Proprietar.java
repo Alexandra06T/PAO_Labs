@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Proprietar {
     private String nume;
@@ -46,6 +47,18 @@ public class Proprietar {
         this.varsta = varsta;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Proprietar that = (Proprietar) o;
+        return varsta == that.varsta && Objects.equals(nume, that.nume) && Objects.equals(prenume, that.prenume);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nume, prenume, varsta);
+    }
 
     @Override
     public String toString() {

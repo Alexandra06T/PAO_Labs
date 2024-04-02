@@ -26,10 +26,17 @@ public class Main {
         magazinChimicale.setChirie(mc);
         System.out.println(magazinChimicale);
 
+        Magazin magazinHaine2 = new Magazin("Magazin Haine", proprietar2, 200.5, 200);
+        magazinHaine2.setChirie(mh);
+        Magazin magazinAlimentar2 = new Magazin("Magazin Alimentar", proprietar2, 100.5, 100);
+        magazinAlimentar2.setChirie(ma);
+
         ShoppingMall shoppingMall = new ShoppingMall();
         shoppingMall.addMagazin(magazinAlimentar);
         shoppingMall.addMagazin(magazinHaine);
         shoppingMall.addMagazin(magazinChimicale);
+        shoppingMall.addMagazin(magazinHaine2);
+        shoppingMall.addMagazin(magazinAlimentar2);
 
         System.out.println("Inainte de sortare: " + shoppingMall);
         Collections.sort(shoppingMall.getMagazine(),
@@ -38,35 +45,31 @@ public class Main {
                         .thenComparing(Magazin::getChirie));
         System.out.println("Dupa sortare: " + shoppingMall);
 
-        Magazin magazinHaine2 = new Magazin("Magazin Haine", proprietar2, 500.5, 100);
-        magazinHaine2.setChirie(mh);
-        Magazin magazinAlimentar2 = new Magazin("Magazin Alimentar", proprietar2, 100.5, 100);
-        magazinAlimentar2.setChirie(ma);
 
-
-        List<Magazin> magazineProprietar = new ArrayList<>();
-        magazineProprietar.add(magazinAlimentar2);
-        magazineProprietar.add(magazinHaine);
-        magazineProprietar.add(magazinHaine2);
-
-        System.out.println("Inainte de sortare:" + magazineProprietar);
-        Collections.sort(magazineProprietar,
-                Comparator.comparing(Magazin::getNumeMagazin)
-                        .thenComparing(Magazin::getVenit)
-                        .thenComparing(Magazin::getChirie)
-                        .thenComparing(Magazin::getSuprafata));
-        System.out.println("Dupa sortare: " + magazineProprietar);
-
-        double venitTotal = 0;
-        for(Magazin m : magazineProprietar) {
-            venitTotal += m.getVenit();
+        List<Magazin> magazineProprietar2 = shoppingMall.getMagazinByProprietar(proprietar2);
+        if(magazineProprietar2 == null) {
+            System.out.println("Proprietarul nu are magazine");
         }
-        System.out.println("Venit total Proprietar2: " + venitTotal);
+        else {
+            System.out.println("Inainte de sortare:" + magazineProprietar2);
+            Collections.sort(magazineProprietar2,
+                    Comparator.comparing(Magazin::getNumeMagazin)
+                            .thenComparing(Magazin::getVenit)
+                            .thenComparing(Magazin::getChirie)
+                            .thenComparing(Magazin::getSuprafata));
+            System.out.println("Dupa sortare: " + magazineProprietar2);
 
-        double chirietotala = 0;
-        for(Magazin m : magazineProprietar) {
-            chirietotala += m.getChirie();
+            double venitTotal = 0;
+            for (Magazin m : magazineProprietar2) {
+                venitTotal += m.getVenit();
+            }
+            System.out.println("Venit total Proprietar2: " + venitTotal);
+
+            double chirietotala = 0;
+            for (Magazin m : magazineProprietar2) {
+                chirietotala += m.getChirie();
+            }
+            System.out.println("Chirie totala Proprietar2: " + chirietotala);
         }
-        System.out.println("Chirie totala Proprietar2: " + chirietotala);
     }
 }
