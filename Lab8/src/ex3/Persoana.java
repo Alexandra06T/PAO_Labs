@@ -2,7 +2,8 @@ package ex3;
 
 import java.io.*;
 
-public class Persoana implements Externalizable, Serializable {
+public class Persoana extends Object implements Externalizable, Serializable  {
+    private static final long serialVersionUID = 1L;
     private String nume;
     private String prenume;
     private int varsta;
@@ -62,13 +63,10 @@ public class Persoana implements Externalizable, Serializable {
 
     @Override
     public String toString() {
-        return "ex3.Persoana{" +
-                "nume='" + nume + '\'' +
-                ", prenume='" + prenume + '\'' +
-                ", varsta=" + varsta +
-                ", suma=" + suma +
-                ", valuta='" + valuta + '\'' +
-                '}';
+        return nume + ' ' + prenume +
+                " " + varsta +
+                " " + suma +
+                " " + valuta;
     }
 
     @Override
