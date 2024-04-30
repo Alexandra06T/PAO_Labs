@@ -1,5 +1,0 @@
-Popescu;Ana;35;345.0;euro
-Ionescu;Maria;26;234.0;ron
-Ionescu;Maria;58;178.0;euro
-Gheorghe;Mihai;28;423.0;usd
-Popescu;Ana;19;234.0;ron
