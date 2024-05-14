@@ -17,23 +17,25 @@ public class MyCache extends Thread {
 
     @Override
     public void run() {
-        try {
-            sleep(2000);
-            if(cache.values().stream().filter(o -> !((StoredObject) o).isExpired()).count() == 0) {
-                System.out.println("Intrerupt!");
-                return;
-            }
-            cache.forEach((key, o) -> {
-                Timestamp crt = new Timestamp(System.currentTimeMillis());
-                StoredObject storedObject = (StoredObject) o;
-                if(crt.after(storedObject.getExpirationTime())){
-                    storedObject.setExpired(true);
+        while (true) {
+            try {
+                sleep(2000);
+                if(cache.values().stream().filter(o -> !((StoredObject) o).isExpired()).count() == 0) {
+                    System.out.println("Intrerupt!");
+                    return;
                 }
-            });
-            cache.forEach((k, o) -> System.out.println( k + " " +  ((StoredObject) o).isExpired()));
-            System.out.println();
-        } catch (InterruptedException e) {
-            System.out.println("Fir intrerupt");
+                cache.forEach((key, o) -> {
+                    Timestamp crt = new Timestamp(System.currentTimeMillis());
+                    StoredObject storedObject = (StoredObject) o;
+                    if(crt.after(storedObject.getExpirationTime())){
+                        storedObject.setExpired(true);
+                    }
+                });
+                cache.forEach((k, o) -> System.out.println( k + " " +  ((StoredObject) o).isExpired()));
+                System.out.println();
+            } catch (InterruptedException e) {
+                System.out.println("Fir intrerupt");
+            }
         }
     }
 }

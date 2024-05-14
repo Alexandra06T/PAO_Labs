@@ -7,17 +7,15 @@ public class Main {
             cache.addObject(so);
         }
 
-        while (true) {
-            try {
-                cache.run();
-                for(int i = 0; i < 100; i++) {
-                    StoredObject so = new StoredObject(String.valueOf(i));
-                    cache.addObject(so);
-                    Thread.sleep(100);
-                }
-            } catch (InterruptedException e) {
-                System.out.println("Fir de executie intrerupt!");
+        cache.start();
+        try {
+            for(int i = 0; i < 100; i++) {
+                StoredObject so = new StoredObject(String.valueOf(i));
+                cache.addObject(so);
+                Thread.sleep(100);
             }
+        } catch (InterruptedException e) {
+            System.out.println("Fir de executie intrerupt!");
         }
     }
 }
