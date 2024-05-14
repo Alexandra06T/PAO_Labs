@@ -19,6 +19,10 @@ public class MyCache extends Thread {
     public void run() {
         try {
             sleep(2000);
+            if(cache.values().stream().filter(o -> !((StoredObject) o).isExpired()).count() == 0) {
+                System.out.println("Intrerupt!");
+                return;
+            }
             cache.forEach((key, o) -> {
                 Timestamp crt = new Timestamp(System.currentTimeMillis());
                 StoredObject storedObject = (StoredObject) o;

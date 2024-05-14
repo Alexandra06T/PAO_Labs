@@ -10,7 +10,7 @@ public class StoredObject {
 
     public StoredObject(Object myInfo) {
         this.myInfo = myInfo;
-        this.expirationTime = new Timestamp(System.currentTimeMillis() + 60);
+        this.expirationTime = new Timestamp(System.currentTimeMillis() + 3000);
     }
 
 
